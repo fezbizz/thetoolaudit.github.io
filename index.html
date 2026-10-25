@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Tool Audit — We Test AI Tools So You Don't Have To</title>
+    <meta name="description" content="The Tool Audit reviews AI tools for faceless creators, marketers, and businesses. We test the tools so you don't have to.">
+    <meta name="keywords" content="AI tools, AI tool reviews, faceless YouTube, ElevenLabs, Originality.ai, Murf AI, AI voiceover, AI detection">
+    <meta property="og:title" content="The Tool Audit — We Test AI Tools So You Don't Have To">
+    <meta property="og:description" content="Honest reviews of AI tools for creators and businesses.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://fezbizz.github.io/thetoolaudit.github.io/">
+    <style>
+        :root {
+            --bg: #0a0e14;
+            --card: #11161f;
+            --card-hover: #161d28;
+            --border: #1e2a3a;
+            --accent: #00b4d8;
+            --accent-dim: #0096b7;
+            --accent-glow: rgba(0, 180, 216, 0.15);
+            --text: #e0e6ed;
+            --text-muted: #8896a8;
+            --text-dim: #5a6a7e;
+            --green: #2ecc71;
+            --orange: #e67e22;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Animated gradient background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(ellipse at 20% 0%, var(--accent-glow) 0%, transparent 50%),
+                        radial-gradient(ellipse at 80% 100%, rgba(46, 204, 113, 0.08) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 24px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Header */
+        header {
+            padding: 80px 0 40px;
+            text-align: center;
+        }
+
+        .logo {
+            font-size: 14px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .logo .audit { color: var(--text); }
+
+        h1 {
+            font-size: 42px;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, var(--text) 0%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .tagline {
+            font-size: 18px;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto 32px;
+        }
+
+        .header-cta {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 28px;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.25s ease;
+            border: 1px solid transparent;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: #0a0e14;
+        }
+
+        .btn-primary:hover {
+            background: var(--accent-dim);
+            box-shadow: 0 4px 20px var(--accent-glow);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: var(--card);
+            color: var(--text);
+            border-color: var(--border);
+        }
+
+        .btn-secondary:hover {
+            background: var(--card-hover);
+            border-color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        /* Stats bar */
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 48px;
+            padding: 32px 0;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            margin: 40px 0;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--accent);
+        }
+
+        .stat-label {
+            font-size: 13px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Sections */
+        section {
+            padding: 48px 0;
+        }
+
+        .section-title {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .section-subtitle {
+            color: var(--text-muted);
+            margin-bottom: 32px;
+            font-size: 15px;
+        }
+
+        /* Video reviews grid */
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 24px;
+        }
+
+        .review-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.25s ease;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .review-card:hover {
+            background: var(--card-hover);
+            border-color: var(--accent);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 30px rgba(0, 180, 216, 0.1);
+        }
+
+        .review-thumb {
+            width: 100%;
+            aspect-ratio: 16/9;
+            background: var(--bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .review-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.85;
+            transition: opacity 0.25s ease;
+        }
+
+        .review-card:hover .review-thumb img {
+            opacity: 1;
+        }
+
+        .review-thumb::after {
+            content: '▶';
+            position: absolute;
+            font-size: 32px;
+            color: white;
+            background: rgba(0, 180, 216, 0.9);
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.25s ease;
+        }
+
+        .review-card:hover .review-thumb::after {
+            opacity: 1;
+        }
+
+        .review-body {
+            padding: 20px;
+        }
+
+        .review-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .review-meta {
+            font-size: 13px;
+            color: var(--text-muted);
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .review-tag {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .tag-voice { background: rgba(0, 180, 216, 0.15); color: var(--accent); }
+        .tag-detection { background: rgba(230, 126, 34, 0.15); color: var(--orange); }
+        .tag-voiceover { background: rgba(46, 204, 113, 0.15); color: var(--green); }
+
+        /* Products section */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 24px;
+        }
+
+        .product-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 28px;
+            transition: all 0.25s ease;
+        }
+
+        .product-card:hover {
+            background: var(--card-hover);
+            border-color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .product-price {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 12px;
+        }
+
+        .product-price.free { color: var(--green); }
+
+        .product-name {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .product-desc {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+        }
+
+        .product-link {
+            display: inline-block;
+            padding: 10px 20px;
+            background: var(--accent);
+            color: #0a0e14;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .product-link:hover {
+            background: var(--accent-dim);
+            box-shadow: 0 4px 15px var(--accent-glow);
+        }
+
+        .product-link.free {
+            background: var(--green);
+        }
+
+        .product-link.free:hover {
+            background: #27ae60;
+        }
+
+        /* About section */
+        .about {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 36px;
+            margin: 24px 0;
+        }
+
+        .about p {
+            color: var(--text-muted);
+            font-size: 16px;
+            margin-bottom: 16px;
+        }
+
+        .about p:last-child { margin-bottom: 0; }
+
+        /* Affiliate disclosure */
+        .disclosure {
+            font-size: 12px;
+            color: var(--text-dim);
+            text-align: center;
+            padding: 24px;
+            border-top: 1px solid var(--border);
+            margin-top: 48px;
+        }
+
+        /* Footer */
+        footer {
+            padding: 32px 0 48px;
+            text-align: center;
+            color: var(--text-dim);
+            font-size: 14px;
+        }
+
+        footer a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        footer a:hover { text-decoration: underline; }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 { font-size: 30px; }
+            .tagline { font-size: 16px; }
+            .stats { flex-direction: column; gap: 20px; }
+            .header-cta { flex-direction: column; }
+            .btn { width: 100%; justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="container">
+        <div class="logo">The <span class="audit">Tool Audit</span></div>
+        <h1>We Test AI Tools<br>So You Don't Have To</h1>
+        <p class="tagline">Honest, hands-on reviews of the AI tools that matter — voice generators, AI detectors, voiceover studios, and more. No fluff, no hype, just real testing.</p>
+        <div class="header-cta">
+            <a href="https://www.youtube.com/channel/UCSXM9Dysu9Z1oRvjrzLeaSA" class="btn btn-primary" target="_blank" rel="noopener">
+                ▶ Watch on YouTube
+            </a>
+            <a href="#products" class="btn btn-secondary">
+                Browse Our Products
+            </a>
+        </div>
+    </div>
+</header>
+
+<div class="container">
+    <div class="stats">
+        <div class="stat">
+            <div class="stat-number">3</div>
+            <div class="stat-label">Videos Published</div>
+        </div>
+        <div class="stat">
+            <div class="stat-number">863+</div>
+            <div class="stat-label">AI Tools Catalogued</div>
+        </div>
+        <div class="stat">
+            <div class="stat-number">3</div>
+            <div class="stat-label">Products Available</div>
+        </div>
+    </div>
+
+    <!-- Reviews Section -->
+    <section id="reviews">
+        <h2 class="section-title">Latest Reviews</h2>
+        <p class="section-subtitle">Every tool is tested hands-on. We show you what works, what doesn't, and whether it's worth your money.</p>
+
+        <div class="reviews-grid">
+            <!-- Episode 1: ElevenLabs -->
+            <a href="https://www.youtube.com/watch?v=WDuZjZwrDQ8" class="review-card" target="_blank" rel="noopener">
+                <div class="review-thumb">
+                    <img src="https://img.youtube.com/vi/WDuZjZwrDQ8/maxresdefault.jpg" alt="ElevenLabs Review" loading="lazy" onerror="this.src='https://img.youtube.com/vi/WDuZjZwrDQ8/hqdefault.jpg'">
+                </div>
+                <div class="review-body">
+                    <span class="review-tag tag-voice">AI Voice</span>
+                    <h3 class="review-title" style="margin-top: 10px;">ElevenLabs Review — The Voice Behind Faceless YouTube</h3>
+                    <div class="review-meta">
+                        <span>Episode 1</span>
+                        <span>•</span>
+                        <span>3:10</span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Episode 2: Originality.ai -->
+            <a href="https://www.youtube.com/watch?v=rmnGCv4tQvU" class="review-card" target="_blank" rel="noopener">
+                <div class="review-thumb">
+                    <img src="https://img.youtube.com/vi/rmnGCv4tQvU/maxresdefault.jpg" alt="Originality.ai Review" loading="lazy" onerror="this.src='https://img.youtube.com/vi/rmnGCv4tQvU/hqdefault.jpg'">
+                </div>
+                <div class="review-body">
+                    <span class="review-tag tag-detection">AI Detection</span>
+                    <h3 class="review-title" style="margin-top: 10px;">Originality.ai Review — Does This AI Detector Actually Work?</h3>
+                    <div class="review-meta">
+                        <span>Episode 2</span>
+                        <span>•</span>
+                        <span>4:04</span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Episode 3: Murf AI -->
+            <a href="https://www.youtube.com/watch?v=UQ5t_-L6kus" class="review-card" target="_blank" rel="noopener">
+                <div class="review-thumb">
+                    <img src="https://img.youtube.com/vi/UQ5t_-L6kus/maxresdefault.jpg" alt="Murf AI Review" loading="lazy" onerror="this.src='https://img.youtube.com/vi/UQ5t_-L6kus/hqdefault.jpg'">
+                </div>
+                <div class="review-body">
+                    <span class="review-tag tag-voiceover">AI Voiceover</span>
+                    <h3 class="review-title" style="margin-top: 10px;">Murf AI Review — Best AI Voiceover Studio for Creators?</h3>
+                    <div class="review-meta">
+                        <span>Episode 3</span>
+                        <span>•</span>
+                        <span>3:07</span>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products">
+        <h2 class="section-title">Our Products</h2>
+        <p class="section-subtitle">Tools and resources built from our research. Instant download, no signup required.</p>
+
+        <div class="products-grid">
+            <!-- AI Tools Directory -->
+            <div class="product-card">
+                <div class="product-price">$29</div>
+                <div class="product-name">AI Tools Directory 2026</div>
+                <p class="product-desc">863+ curated AI tools in one clean, sortable spreadsheet. Plus the 500 most-used AI models. Excel and Google Sheets ready.</p>
+                <a href="https://fezbizz.gumroad.com/l/ai-tools-directory" class="product-link" target="_blank" rel="noopener">Get the Directory →</a>
+            </div>
+
+            <!-- Automation Playbook -->
+            <div class="product-card">
+                <div class="product-price">$19</div>
+                <div class="product-name">Faceless YouTube Automation Playbook</div>
+                <p class="product-desc">The complete system behind The Tool Audit channel. Script → narration → screenshots → video → upload. Fully documented, 30+ pages.</p>
+                <a href="https://fezbizz.gumroad.com/l/xhragu" class="product-link" target="_blank" rel="noopener">Get the Playbook →</a>
+            </div>
+
+            <!-- Free Pack -->
+            <div class="product-card">
+                <div class="product-price free">FREE</div>
+                <div class="product-name">Top 50 AI Tools — Starter Pack</div>
+                <p class="product-desc">A free sample of our AI Tools Directory. The 50 most popular AI tools, categorized and ready to sort. No cost, no signup.</p>
+                <a href="https://fezbizz.gumroad.com/l/ai-tools-top50-free" class="product-link free" target="_blank" rel="noopener">Download Free →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <h2 class="section-title">About The Tool Audit</h2>
+        <div class="about">
+            <p>The Tool Audit is a faceless YouTube channel dedicated to honest, hands-on reviews of AI tools. We don't just read marketing pages — we actually use the tools, test them with real workflows, and show you the results.</p>
+            <p>Every review follows the same process: we write a script, generate narration with AI, capture screenshots from the tool's website, and build a professional video. The entire pipeline is automated. We even wrote a <a href="https://fezbizz.gumroad.com/l/xhragu" style="color: var(--accent);">playbook</a> showing exactly how we do it.</p>
+            <p>If you're building a faceless channel, running a business that uses AI tools, or just want to know which tools are worth your money — you're in the right place.</p>
+        </div>
+    </section>
+
+    <div class="disclosure">
+        Some links on this page and in our video descriptions are affiliate links. We may earn a commission at no additional cost to you. We only recommend tools we have actually tested.
+    </div>
+</div>
+
+<footer>
+    <div class="container">
+        <p>The Tool Audit &copy; 2026 — <a href="https://www.youtube.com/channel/UCSXM9Dysu9Z1oRvjrzLeaSA">YouTube</a> • <a href="https://fezbizz.gumroad.com">Gumroad</a> • <a href="https://github.com/fezbizz">GitHub</a></p>
+    </div>
+</footer>
+
+</body>
+</html>
