@@ -9,7 +9,8 @@
     <meta property="og:title" content="The Tool Audit — We Test AI Tools So You Don't Have To">
     <meta property="og:description" content="Honest reviews of AI tools for creators and businesses.">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://fezbizz.github.io/thetoolaudit.github.io/">
+    <link rel="canonical" href="https://thetoolaudit.org/">
+    <meta property="og:url" content="https://thetoolaudit.org/">
     <style>
         :root {
             --bg: #0a0e14;
@@ -394,6 +395,25 @@
             .header-cta { flex-direction: column; }
             .btn { width: 100%; justify-content: center; }
         }
+    
+        /* Affiliate try buttons */
+        .review-card-wrap { display: flex; flex-direction: column; }
+        .try-btn {
+            display: block;
+            text-align: center;
+            padding: 10px 16px;
+            margin-top: 10px;
+            border: 1px solid var(--accent);
+            border-radius: 8px;
+            color: var(--accent);
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            background: rgba(0, 180, 216, 0.05);
+        }
+        .try-btn:hover { background: var(--accent); color: #0a0e14; }
     </style>
 </head>
 <body>
@@ -437,7 +457,8 @@
 
         <div class="reviews-grid">
             <!-- Episode 1: ElevenLabs -->
-            <a href="https://www.youtube.com/watch?v=WDuZjZwrDQ8" class="review-card" target="_blank" rel="noopener">
+            <div class="review-card-wrap">
+                <a href="https://www.youtube.com/watch?v=WDuZjZwrDQ8" class="review-card" target="_blank" rel="noopener">
                 <div class="review-thumb">
                     <img src="https://img.youtube.com/vi/WDuZjZwrDQ8/maxresdefault.jpg" alt="ElevenLabs Review" loading="lazy" onerror="this.src='https://img.youtube.com/vi/WDuZjZwrDQ8/hqdefault.jpg'">
                 </div>
@@ -451,9 +472,12 @@
                     </div>
                 </div>
             </a>
+                <a href="https://try.elevenlabs.io/it55zuedy41d" class="try-btn" target="_blank" rel="sponsored noopener">Try ElevenLabs →</a>
+            </div>
 
             <!-- Episode 2: Originality.ai -->
-            <a href="https://www.youtube.com/watch?v=rmnGCv4tQvU" class="review-card" target="_blank" rel="noopener">
+            <div class="review-card-wrap">
+                <a href="https://www.youtube.com/watch?v=rmnGCv4tQvU" class="review-card" target="_blank" rel="noopener">
                 <div class="review-thumb">
                     <img src="https://img.youtube.com/vi/rmnGCv4tQvU/maxresdefault.jpg" alt="Originality.ai Review" loading="lazy" onerror="this.src='https://img.youtube.com/vi/rmnGCv4tQvU/hqdefault.jpg'">
                 </div>
@@ -467,9 +491,12 @@
                     </div>
                 </div>
             </a>
+                <a href="https://originality.ai/?via=felix-mpaka" class="try-btn" target="_blank" rel="sponsored noopener">Try Originality.ai →</a>
+            </div>
 
             <!-- Episode 3: Murf AI -->
-            <a href="https://www.youtube.com/watch?v=UQ5t_-L6kus" class="review-card" target="_blank" rel="noopener">
+            <div class="review-card-wrap">
+                <a href="https://www.youtube.com/watch?v=UQ5t_-L6kus" class="review-card" target="_blank" rel="noopener">
                 <div class="review-thumb">
                     <img src="https://img.youtube.com/vi/UQ5t_-L6kus/maxresdefault.jpg" alt="Murf AI Review" loading="lazy" onerror="this.src='https://img.youtube.com/vi/UQ5t_-L6kus/hqdefault.jpg'">
                 </div>
@@ -483,6 +510,8 @@
                     </div>
                 </div>
             </a>
+                <a href="https://get.murf.ai/4fhknqrde01n" class="try-btn" target="_blank" rel="sponsored noopener">Try Murf AI →</a>
+            </div>
         </div>
     </section>
 
