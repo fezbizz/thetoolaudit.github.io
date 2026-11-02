@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Felix Mpaka — Automation Engineer & AI Systems Developer</title>
+    <meta name="description" content="Felix Mpaka — Automation engineer building production AI systems, automated content pipelines, and algorithmic trading bots. Available for freelance and remote work.">
+    <meta name="keywords" content="Python developer, automation engineer, AI developer, freelance, South Africa, Streamlit, Playwright, ffmpeg, LLM integration">
+    <meta property="og:title" content="Felix Mpaka — Automation Engineer & AI Systems Developer">
+    <meta property="og:description" content="Building production AI systems, automated content pipelines, and algorithmic trading bots.">
+    <meta property="og:type" content="website">
+    <style>
+        :root {
+            --bg: #0a0e14;
+            --card: #11161f;
+            --card-hover: #161d28;
+            --border: #1e2a3a;
+            --accent: #00b4d8;
+            --accent-dim: #0096b7;
+            --accent-glow: rgba(0, 180, 216, 0.15);
+            --text: #e0e6ed;
+            --text-muted: #8896a8;
+            --text-dim: #5a6a7e;
+            --green: #2ecc71;
+            --orange: #e67e22;
+            --purple: #9b59b6;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(ellipse at 20% 0%, var(--accent-glow) 0%, transparent 50%),
+                        radial-gradient(ellipse at 80% 100%, rgba(155, 89, 182, 0.08) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 24px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Nav */
+        nav {
+            padding: 20px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-back {
+            color: var(--accent);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav-back:hover { color: var(--accent-dim); }
+
+        .nav-links {
+            display: flex;
+            gap: 24px;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover { color: var(--accent); }
+
+        /* Header */
+        header {
+            padding: 60px 0 40px;
+            text-align: center;
+        }
+
+        .avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: var(--card);
+            border: 2px solid var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--accent);
+        }
+
+        h1 {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            font-size: 18px;
+            color: var(--accent);
+            margin-bottom: 16px;
+            font-weight: 500;
+        }
+
+        .location {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-bottom: 24px;
+        }
+
+        .header-cta {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.25s ease;
+            border: 1px solid transparent;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: #0a0e14;
+        }
+
+        .btn-primary:hover {
+            background: var(--accent-dim);
+            box-shadow: 0 4px 20px var(--accent-glow);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: var(--card);
+            color: var(--text);
+            border-color: var(--border);
+        }
+
+        .btn-secondary:hover {
+            background: var(--card-hover);
+            border-color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        /* Stats */
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            padding: 28px 0;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            margin: 32px 0;
+        }
+
+        .stat { text-align: center; }
+
+        .stat-number {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--accent);
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Sections */
+        section {
+            padding: 40px 0;
+        }
+
+        .section-title {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .section-subtitle {
+            color: var(--text-muted);
+            margin-bottom: 24px;
+            font-size: 14px;
+        }
+
+        /* Skills */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .skill-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 24px;
+            transition: all 0.25s ease;
+        }
+
+        .skill-card:hover {
+            background: var(--card-hover);
+            border-color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .skill-icon {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .skill-title {
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--accent);
+        }
+
+        .skill-items {
+            font-size: 13px;
+            color: var(--text-muted);
+            line-height: 1.7;
+        }
+
+        /* Projects */
+        .project-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 28px;
+            margin-bottom: 20px;
+            transition: all 0.25s ease;
+        }
+
+        .project-card:hover {
+            background: var(--card-hover);
+            border-color: var(--accent);
+        }
+
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 12px;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .project-name {
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .project-date {
+            font-size: 12px;
+            color: var(--text-dim);
+            white-space: nowrap;
+        }
+
+        .project-tag {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 10px;
+        }
+
+        .tag-python { background: rgba(0, 180, 216, 0.15); color: var(--accent); }
+        .tag-ai { background: rgba(155, 89, 182, 0.15); color: var(--purple); }
+        .tag-automation { background: rgba(46, 204, 113, 0.15); color: var(--green); }
+        .tag-trading { background: rgba(230, 126, 34, 0.15); color: var(--orange); }
+
+        .project-desc {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-bottom: 14px;
+        }
+
+        .project-metrics {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .metric {
+            font-size: 13px;
+            color: var(--text);
+        }
+
+        .metric strong {
+            color: var(--accent);
+            font-size: 15px;
+        }
+
+        /* Services */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .service-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 24px;
+            transition: all 0.25s ease;
+        }
+
+        .service-card:hover {
+            background: var(--card-hover);
+            border-color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .service-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--accent);
+        }
+
+        .service-desc {
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        /* Contact */
+        .contact {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 36px;
+            text-align: center;
+            margin: 24px 0;
+        }
+
+        .contact p {
+            color: var(--text-muted);
+            font-size: 15px;
+            margin-bottom: 20px;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .contact-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text);
+            font-size: 14px;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .contact-link:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        /* Footer */
+        footer {
+            padding: 28px 0 40px;
+            text-align: center;
+            color: var(--text-dim);
+            font-size: 13px;
+        }
+
+        footer a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        footer a:hover { text-decoration: underline; }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 { font-size: 28px; }
+            .subtitle { font-size: 16px; }
+            .stats { flex-direction: column; gap: 16px; }
+            .header-cta { flex-direction: column; }
+            .btn { width: 100%; justify-content: center; }
+            .project-header { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <div class="container nav-inner">
+        <a href="https://fezbizz.github.io/thetoolaudit.github.io/" class="nav-back">← The Tool Audit</a>
+        <div class="nav-links">
+            <a href="#skills">Skills</a>
+            <a href="#projects">Projects</a>
+            <a href="#services">Services</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </div>
+</nav>
+
+<header>
+    <div class="container">
+        <div class="avatar">FM</div>
+        <h1>Felix Mpaka</h1>
+        <p class="subtitle">Automation Engineer & AI Systems Developer</p>
+        <p class="location">South Africa · Available for freelance & remote work</p>
+        <div class="header-cta">
+            <a href="#contact" class="btn btn-primary">Get in Touch</a>
+            <a href="https://github.com/fezbizz" class="btn btn-secondary" target="_blank" rel="noopener">GitHub Profile</a>
+        </div>
+    </div>
+</header>
+
+<div class="container">
+    <div class="stats">
+        <div class="stat">
+            <div class="stat-number">48</div>
+            <div class="stat-label">Tools Built</div>
+        </div>
+        <div class="stat">
+            <div class="stat-number">6</div>
+            <div class="stat-label">Videos Automated</div>
+        </div>
+        <div class="stat">
+            <div class="stat-number">3</div>
+            <div class="stat-label">Products Published</div>
+        </div>
+        <div class="stat">
+            <div class="stat-number">12x</div>
+            <div class="stat-label">Performance Optimized</div>
+        </div>
+    </div>
+
+    <!-- About -->
+    <section id="about">
+        <div class="project-card">
+            <p style="font-size: 16px; color: var(--text-muted); line-height: 1.8;">
+                Self-taught automation engineer with hands-on experience building production-grade AI systems, automated content pipelines, and algorithmic trading bots. I turn manual workflows into fully automated pipelines — from AI-powered video production to voice-controlled assistant systems. I build things that work, not prototypes that demo.
+            </p>
+        </div>
+    </section>
+
+    <!-- Skills -->
+    <section id="skills">
+        <h2 class="section-title">Technical Skills</h2>
+        <p class="section-subtitle">Production experience across the full automation stack.</p>
+
+        <div class="skills-grid">
+            <div class="skill-card">
+                <div class="skill-icon">🐍</div>
+                <div class="skill-title">Languages & Frameworks</div>
+                <div class="skill-items">
+                    Python (3+ years production)<br>
+                    Streamlit (web applications)<br>
+                    HTML / CSS / JavaScript<br>
+                    Bash / Shell scripting
+                </div>
+            </div>
+
+            <div class="skill-card">
+                <div class="skill-icon">🤖</div>
+                <div class="skill-title">AI & Machine Learning</div>
+                <div class="skill-items">
+                    LLM integration (OpenAI, Ollama)<br>
+                    ElevenLabs API (text-to-speech)<br>
+                    Function calling / tool use<br>
+                    Prompt engineering & system architecture
+                </div>
+            </div>
+
+            <div class="skill-card">
+                <div class="skill-icon">⚙️</div>
+                <div class="skill-title">Automation & Tooling</div>
+                <div class="skill-items">
+                    ffmpeg (video processing)<br>
+                    Playwright (browser automation)<br>
+                    Cloudflare Tunnel (deployment)<br>
+                    GitHub Pages (static sites)<br>
+                    Scheduled task systems<br>
+                    Telegram Bot API
+                </div>
+            </div>
+
+            <div class="skill-card">
+                <div class="skill-icon">🔌</div>
+                <div class="skill-title">Platforms & APIs</div>
+                <div class="skill-items">
+                    YouTube Data API (OAuth uploads)<br>
+                    Gumroad (digital products)<br>
+                    Google Cloud Platform<br>
+                    Git / GitHub (version control)
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects">
+        <h2 class="section-title">Projects & Experience</h2>
+        <p class="section-subtitle">Real systems built and deployed in production.</p>
+
+        <!-- JARVIS -->
+        <div class="project-card">
+            <div class="project-header">
+                <div>
+                    <div class="project-name">JARVIS AI Assistant</div>
+                    <span class="project-tag tag-ai">AI</span>
+                    <span class="project-tag tag-python">Python</span>
+                </div>
+                <div class="project-date">2026 — Present</div>
+            </div>
+            <p class="project-desc">
+                Built a fully functional AI assistant with 48 tools, voice interaction, and a sci-fi HUD interface. Integrated ElevenLabs text-to-speech for human-quality voice responses. Implemented a 10-component architecture (observer, task manager, agent registry, verifier, recovery engine, approval layer, memory engine, context engine, agent harness, core orchestrator). Added two-way Telegram bot for remote control.
+            </p>
+            <div class="project-metrics">
+                <div class="metric"><strong>48</strong> tools</div>
+                <div class="metric"><strong>10</strong> components</div>
+                <div class="metric"><strong>12x</strong> speedup via context optimization</div>
+                <div class="metric"><strong>90%</strong> token reduction in memory system</div>
+            </div>
+        </div>
+
+        <!-- Tool Audit Pipeline -->
+        <div class="project-card">
+            <div class="project-header">
+                <div>
+                    <div class="project-name">The Tool Audit — Automated YouTube Pipeline</div>
+                    <span class="project-tag tag-automation">Automation</span>
+                    <span class="project-tag tag-python">Python</span>
+                </div>
+                <div class="project-date">2026</div>
+            </div>
+            <p class="project-desc">
+                Designed and built a fully automated faceless YouTube pipeline: script → AI narration → screenshot capture → video assembly → YouTube upload. Published 6 tool review videos. Built channel website on GitHub Pages with affiliate integration. Automated uploads via YouTube OAuth API.
+            </p>
+            <div class="project-metrics">
+                <div class="metric"><strong>6</strong> videos published</div>
+                <div class="metric"><strong>0</strong> hours manual editing</div>
+                <div class="metric"><strong>4</strong> affiliate programs integrated</div>
+            </div>
+        </div>
+
+        <!-- Trading Bots -->
+        <div class="project-card">
+            <div class="project-header">
+                <div>
+                    <div class="project-name">Algorithmic Trading Bots</div>
+                    <span class="project-tag tag-trading">Trading</span>
+                    <span class="project-tag tag-python">Python</span>
+                </div>
+                <div class="project-date">2026</div>
+            </div>
+            <p class="project-desc">
+                Developed two cryptocurrency trading bots with uptrend and downtrend strategies. Built backtesting framework against historical data. Implemented paper trading mode with risk controls (daily caps, trend vetoes, network skip protection). Integrated Telegram notifications for trade alerts and daily summaries.
+            </p>
+            <div class="project-metrics">
+                <div class="metric"><strong>2</strong> bots running</div>
+                <div class="metric"><strong>24/7</strong> automated monitoring</div>
+                <div class="metric"><strong>Telegram</strong> alert system</div>
+            </div>
+        </div>
+
+        <!-- AI Tools Directory -->
+        <div class="project-card">
+            <div class="project-header">
+                <div>
+                    <div class="project-name">AI Tools Directory — Digital Product</div>
+                    <span class="project-tag tag-automation">Product</span>
+                </div>
+                <div class="project-date">2026</div>
+            </div>
+            <p class="project-desc">
+                Catalogued 863+ AI tools into a sortable spreadsheet product. Published on Gumroad with a free top-50 lead magnet. Built funnel health monitoring with daily automated HTTP checks and alerts.
+            </p>
+            <div class="project-metrics">
+                <div class="metric"><strong>863+</strong> tools catalogued</div>
+                <div class="metric"><strong>3</strong> products published</div>
+                <div class="metric"><strong>$29 + $19</strong> price points</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services -->
+    <section id="services">
+        <h2 class="section-title">Services</h2>
+        <p class="section-subtitle">What I can build for you.</p>
+
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-title">Faceless YouTube Automation</div>
+                <div class="service-desc">
+                    Done-for-you automated video pipeline. Script to YouTube, fully automated. I'll set up your entire channel production system — narration, screenshots, video assembly, and scheduled uploads.
+                </div>
+            </div>
+
+            <div class="service-card">
+                <div class="service-title">AI Assistant / Chatbot Development</div>
+                <div class="service-desc">
+                    Custom AI assistants with tool use, persistent memory, and voice interaction. Deploy on web, Telegram, or both. Built on proven architecture with 48+ tool capabilities.
+                </div>
+            </div>
+
+            <div class="service-card">
+                <div class="service-title">Workflow Automation</div>
+                <div class="service-desc">
+                    Turn any repetitive manual process into an automated pipeline. Browser automation, API integration, scheduled tasks, monitoring, and notifications.
+                </div>
+            </div>
+
+            <div class="service-card">
+                <div class="service-title">Content Pipeline Setup</div>
+                <div class="service-desc">
+                    Automated content production for blogs, social media, or video. From research to publishing, with quality controls and approval workflows.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+        <h2 class="section-title">Let's Work Together</h2>
+        <div class="contact">
+            <p>Available for freelance projects, full-time remote roles, and consulting. Based in South Africa, working with clients globally.</p>
+            <div class="contact-links">
+                <a href="mailto:fezbizz05@gmail.com" class="contact-link">📧 Email</a>
+                <a href="https://github.com/fezbizz" class="contact-link" target="_blank" rel="noopener">💻 GitHub</a>
+                <a href="https://fezbizz.gumroad.com" class="contact-link" target="_blank" rel="noopener">🛒 Gumroad</a>
+                <a href="https://www.youtube.com/channel/UCSXM9Dysu9Z1oRvjrzLeaSA" class="contact-link" target="_blank" rel="noopener">▶ YouTube</a>
+            </div>
+        </div>
+    </section>
+</div>
+
+<footer>
+    <div class="container">
+        <p>Felix Mpaka &copy; 2026 — <a href="https://fezbizz.github.io/thetoolaudit.github.io/">The Tool Audit</a> · <a href="https://github.com/fezbizz">GitHub</a></p>
+    </div>
+</footer>
+
+</body>
+</html>
